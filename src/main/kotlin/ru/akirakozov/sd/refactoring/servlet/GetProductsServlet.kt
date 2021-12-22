@@ -1,6 +1,6 @@
 package ru.akirakozov.sd.refactoring.servlet
 
-import ru.akirakozov.sd.refactoring.executeQuery
+import ru.akirakozov.sd.refactoring.getProducts
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -10,15 +10,11 @@ import javax.servlet.http.HttpServletResponse
  */
 class GetProductsServlet : HttpServlet() {
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        executeQuery("*", ""){ rs ->
-            response.writer.println("<html><body>")
-            while (rs.next()) {
-                val name = rs.getString("name")
-                val price = rs.getInt("price")
-                response.writer.println("$name\t$price</br>")
-            }
-            response.writer.println("</body></html>")
+        response.writer.println("<html><body>")
+        getProducts().forEach { (name, price) ->
+            response.writer.println("$name\t$price</br>")
         }
+        response.writer.println("</body></html>")
 
         response.contentType = "text/html"
         response.status = HttpServletResponse.SC_OK

@@ -12,12 +12,7 @@ import ru.akirakozov.sd.refactoring.servlet.QueryServlet
  */
 
 fun startServer(args: Array<String>): Server {
-    val sql = "CREATE TABLE IF NOT EXISTS PRODUCT" +
-            "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            " NAME           TEXT    NOT NULL, " +
-            " PRICE          INT     NOT NULL)"
-    executeUpdate(sql)
-
+    initDb()
     val server = Server(8081)
     val context = ServletContextHandler(ServletContextHandler.SESSIONS)
     context.contextPath = "/"
