@@ -11,7 +11,7 @@ import java.net.URL
 import kotlin.test.assertEquals
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class Test {
+class HttpTest {
     lateinit var server: Server
 
     private fun makeRequest(req: String): String =
