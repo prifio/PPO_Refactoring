@@ -5,7 +5,7 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import ru.akirakozov.sd.refactoring.Main
+import ru.akirakozov.sd.refactoring.startServer
 import java.io.File
 import java.net.URL
 import kotlin.test.assertEquals
@@ -22,7 +22,7 @@ class Test {
     @BeforeAll
     fun prepareApp() {
         File("test.db").delete()
-        server = Main.startServer(emptyArray())
+        server = startServer(emptyArray())
         addProduct("name1", 1)
         addProduct("name2", 2)
         addProduct("name3", 3)
