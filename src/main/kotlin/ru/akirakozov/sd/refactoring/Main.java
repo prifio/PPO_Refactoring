@@ -15,7 +15,7 @@ import java.sql.Statement;
  * @author akirakozov
  */
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static Server startServer(String[] args) throws Exception {
         try (Connection c = DriverManager.getConnection("jdbc:sqlite:test.db")) {
             String sql = "CREATE TABLE IF NOT EXISTS PRODUCT" +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -38,6 +38,11 @@ public class Main {
         context.addServlet(new ServletHolder(new QueryServlet()),"/query");
 
         server.start();
+        return server;
+    }
+
+    public static void main(String[] args) throws Exception {
+        Server server = startServer(args);
         server.join();
     }
 }
