@@ -9,14 +9,10 @@ import javax.servlet.http.HttpServletResponse
  * @author akirakozov
  */
 class GetProductsServlet : HttpServlet() {
-    override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        response.writer.println("<html><body>")
-        getProducts().forEach { (name, price) ->
-            response.writer.println("$name\t$price</br>")
+    override fun doGet(request: HttpServletRequest, response: HttpServletResponse) =
+        doResponse(response) {
+            getProducts().forEach { (name, price) ->
+                println("$name\t$price</br>")
+            }
         }
-        response.writer.println("</body></html>")
-
-        response.contentType = "text/html"
-        response.status = HttpServletResponse.SC_OK
-    }
 }

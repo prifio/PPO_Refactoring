@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse
  * @author akirakozov
  */
 class AddProductServlet : HttpServlet() {
-    override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        val name = request.getParameter("name")
-        val price = request.getParameter("price").toLong()
-        addProduct(name, price)
-
-        response.contentType = "text/html"
-        response.status = HttpServletResponse.SC_OK
-        response.writer.println("OK")
-    }
+    override fun doGet(request: HttpServletRequest, response: HttpServletResponse) =
+        doResponse(response) {
+            val name = request.getParameter("name")
+            val price = request.getParameter("price").toLong()
+            addProduct(name, price)
+            println("OK")
+        }
 }
